@@ -44,7 +44,7 @@ addon | version | maintainers | summary
 [stock_move_propagate_first_move](stock_move_propagate_first_move/) | 15.0.1.0.0 |  | This addon propagate the picking type of the original move to all next moves created from procurement
 [stock_move_quick_lot](stock_move_quick_lot/) | 15.0.1.0.0 |  | Set lot name and end date directly on picking operations
 [stock_no_negative](stock_no_negative/) | 15.0.1.0.0 |  | Disallow negative stock levels by default
-[stock_owner_restriction](stock_owner_restriction/) | 15.0.1.1.2 |  | Do not reserve quantity with assigned owner
+[stock_owner_restriction](stock_owner_restriction/) | 15.0.1.1.3 |  | Do not reserve quantity with assigned owner
 [stock_picking_assign_serial_final](stock_picking_assign_serial_final/) | 15.0.1.0.0 | [![sergio-teruel](https://github.com/sergio-teruel.png?size=30px)](https://github.com/sergio-teruel) | Generate serial numbers until to a final serial number
 [stock_picking_auto_create_lot](stock_picking_auto_create_lot/) | 15.0.1.0.3 | [![sergio-teruel](https://github.com/sergio-teruel.png?size=30px)](https://github.com/sergio-teruel) | Auto create lots for incoming pickings
 [stock_picking_back2draft](stock_picking_back2draft/) | 15.0.1.0.1 |  | Reopen cancelled pickings
@@ -74,7 +74,9 @@ addon | version | maintainers | summary
 [stock_picking_sale_order_link](stock_picking_sale_order_link/) | 15.0.1.0.3 |  | Link between picking and sale order
 [stock_picking_send_by_mail](stock_picking_send_by_mail/) | 15.0.1.0.2 |  | Send stock picking by email
 [stock_picking_show_backorder](stock_picking_show_backorder/) | 15.0.1.0.1 |  | Provides a new field on stock pickings, allowing to display the corresponding backorders.
+[stock_picking_show_lot](stock_picking_show_lot/) | 15.0.1.0.0 |  | Stock Picking Show Lot
 [stock_picking_show_return](stock_picking_show_return/) | 15.0.1.0.0 |  | Show returns on stock pickings
+[stock_picking_start](stock_picking_start/) | 15.0.1.0.0 |  | Add button to start picking
 [stock_picking_warn_message](stock_picking_warn_message/) | 15.0.1.0.1 |  | Add a popup warning on picking to ensure warning is populated
 [stock_picking_whole_scrap](stock_picking_whole_scrap/) | 15.0.1.0.2 | [![sergio-teruel](https://github.com/sergio-teruel.png?size=30px)](https://github.com/sergio-teruel) | Create whole scrap from a picking for move lines
 [stock_product_set](stock_product_set/) | 15.0.1.0.0 | [![victoralmau](https://github.com/victoralmau.png?size=30px)](https://github.com/victoralmau) | Add product sets in pickings
@@ -91,6 +93,7 @@ addon | version | maintainers | summary
 [stock_split_picking](stock_split_picking/) | 15.0.1.1.2 |  | Split a picking in two not transferred pickings
 [stock_valuation_fifo_lot](stock_valuation_fifo_lot/) | 15.0.1.0.0 | [![newtratip](https://github.com/newtratip.png?size=30px)](https://github.com/newtratip) | Stock Valuation Fifo Lot
 [stock_valuation_layer_usage](stock_valuation_layer_usage/) | 15.0.1.0.0 |  | Trace where has the stock valuation been used in, including the quantities taken.
+[stock_warn_option](stock_warn_option/) | 15.0.1.0.0 | [![Shide](https://github.com/Shide.png?size=30px)](https://github.com/Shide) [![rafaelbn](https://github.com/rafaelbn.png?size=30px)](https://github.com/rafaelbn) | Add Options to Stock Warn Messages
 
 [//]: # (end addons)
 
