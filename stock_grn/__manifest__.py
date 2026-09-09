@@ -4,13 +4,14 @@
 
 {
     "name": "Goods Received Note",
-    "version": "16.0.1.0.3",
+    "version": "16.0.1.2.0",
     "author": "BCIM, ACSONE SA/NV, Odoo Community Association (OCA)",
     "category": "Delivery",
-    "depends": ["stock"],
+    "depends": ["stock", "stock_dock", "stock_picking_dock"],
     "website": "https://github.com/OCA/stock-logistics-workflow",
     "data": [
         "views/stock_grn_views.xml",
+        "views/stock_grn_type_views.xml",
         "views/stock_picking_views.xml",
         "views/stock_picking_type_views.xml",
         "views/stock_move_views.xml",

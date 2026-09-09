@@ -1,4 +1,5 @@
 # Copyright 2015 Jacques-Etienne Baudoux (BCIM) <je@bcim.be>
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html).
 
 from odoo import api, fields, models
 
@@ -25,6 +26,7 @@ class StockGrn(models.Model):
     delivery_note_supplier_number = fields.Char(
         string="Supplier delivery note number", required=True
     )
+    dock_ids = fields.Many2many("stock.dock")
 
     company_id = fields.Many2one(
         "res.company",

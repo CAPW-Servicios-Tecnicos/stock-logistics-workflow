@@ -9,12 +9,16 @@ on:
       - "16.0"
       - "16.0-ocabot-*"
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   unreleased-deps:
     runs-on: ubuntu-latest
     name: Detect unreleased dependencies
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: |
           for reqfile in requirements.txt test-requirements.txt ; do
               if [ -f ${reqfile} ] ; then
@@ -35,6 +39,10 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          - container: ghcr.io/oca/oca-ci/py3.10-ocb16.0:latest
+            include: "product_expiry_simple"
+            name: test OCB with product_expiry_simple
+            makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.10-odoo16.0:latest
             include: "stock_picking_to_batch_group_fields"
             name: test with Odoo
@@ -43,22 +51,22 @@ jobs:
             name: test with OCB
             makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.10-odoo16.0:latest
-            include: "stock_customer_deposit,stock_customer_deposit_elaboration"
+            include: "stock_customer_deposit,stock_customer_deposit_elaboration,stock_customer_deposit_sale_margin"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.10-ocb16.0:latest
-            include: "stock_customer_deposit,stock_customer_deposit_elaboration"
+            include: "stock_customer_deposit,stock_customer_deposit_elaboration,stock_customer_deposit_sale_margin"
             name: test with OCB
             makepot: "true"
           - container: ghcr.io/oca/oca-ci/py3.10-odoo16.0:latest
-            exclude: "stock_picking_to_batch_group_fields,stock_customer_deposit,stock_customer_deposit_elaboration"
+            exclude: "stock_picking_to_batch_group_fields,stock_customer_deposit,stock_customer_deposit_elaboration,stock_customer_deposit_sale_margin,product_expiry_simple"
             name: test with Odoo
           - container: ghcr.io/oca/oca-ci/py3.10-ocb16.0:latest
-            exclude: "stock_picking_to_batch_group_fields,stock_customer_deposit,stock_customer_deposit_elaboration"
+            exclude: "stock_picking_to_batch_group_fields,stock_customer_deposit,stock_customer_deposit_elaboration,stock_customer_deposit_sale_margin,product_expiry_simple"
             name: test with OCB
             makepot: "true"
     services:
       postgres:
-        image: postgres:12.0
+        image: postgres:12
         env:
           POSTGRES_USER: odoo
           POSTGRES_PASSWORD: odoo
@@ -69,7 +77,7 @@ jobs:
       INCLUDE: "${{ matrix.include }}"
       EXCLUDE: "${{ matrix.exclude }}"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           persist-credentials: false
       - name: Install addons and dependencies
@@ -82,6 +90,13 @@ jobs:
         run: oca_init_test_database
       - name: Run tests
         run: oca_run_tests
+      - name: Upload screenshots from JS tests
+        uses: actions/upload-artifact@v4
+        if: ${{ failure() }}
+        with:
+          name: Screenshots of failed JS tests - ${{ matrix.name }}${{ join(matrix.include) }}
+          path: /tmp/odoo_tests/${{ env.PGDATABASE }}
+          if-no-files-found: ignore
       - uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
